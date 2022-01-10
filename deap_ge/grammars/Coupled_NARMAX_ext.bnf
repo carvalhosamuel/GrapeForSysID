@@ -1,0 +1,41 @@
+<expression> ::= <inputterm> <term> + <noiseterm>
+
+<inputterm> ::= <constant> * x[0] 
+ 	      | <constant> * np.power(x[0],<power>)
+
+<term> ::= <constant> * <input> 
+         | <constant> * <output>
+         | <constant> * <input> <term>
+         | <constant> * <output> <term>
+         | <constant> * <nonlinearinput>
+         | <constant> * <nonlinearoutput> 
+         | <constant> * <nonlinearinput><term>
+         | <constant> * <nonlinearoutput><term>
+
+<noiseterm> ::= <noise>| 
+                <noise>*<noiseterm>
+
+<input>  ::= x[0]|x[1]|x[2]|x[3]|x[4]|x[5]
+<output> ::= x[6]|x[7]|x[8]|x[9]|x[10]|x[10]|x[11]|x[12]|x[13]|x[14]|x[15]
+<noise>  ::= x[16]|x[17]|x[18]|x[19]|x[20]|x[21]
+		 
+<nonlinearinput>  ::= np.power(<input>, <power>)|
+		      <input> * <input>|
+		      <input> * <output>|
+		      np.sin(<input>)|
+		      np.cos(<input>)|
+		      np.absolute(<input>)|
+		      <input> * <nonlinearinput> 	 
+                                          
+<nonlinearoutput> ::= np.power(<output>, <power>)|
+		      <output> * <output>|
+		      <output> * <input>|
+		      np.sin(<output>)|
+		      np.cos(<output>)|
+		      np.absolute(<output>)|
+		      <output> * <nonlinearoutput> 	
+                      
+<power>    ::=  2 | 3 | 4 | 5	
+<constant> ::=  +<c>.<c><c><c><c> | -<c>.<c><c><c><c>
+<c>  ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
